@@ -8,8 +8,12 @@ import Avatar from "@mui/material/Avatar";
 
 interface GameGenreListProps {
   onSelectGenre: (genre: GameGenre) => void;
+  selectedGenre: GameGenre | null;
 }
-const GameGenreList = ({ onSelectGenre }: GameGenreListProps) => {
+const GameGenreList = ({
+  onSelectGenre,
+  selectedGenre,
+}: GameGenreListProps) => {
   const { data, isLoading, error } = useGamesGenres();
 
   return (
@@ -21,7 +25,10 @@ const GameGenreList = ({ onSelectGenre }: GameGenreListProps) => {
       {error && <Typography variant="h5">{error}</Typography>}
 
       {data.map((gamesGenre) => (
-        <ListItemButton onClick={() => onSelectGenre(gamesGenre)}>
+        <ListItemButton
+          selected={gamesGenre.id === selectedGenre?.id}
+          onClick={() => onSelectGenre(gamesGenre)}
+        >
           <ListItemAvatar>
             <Avatar alt={gamesGenre.name} src={gamesGenre.image_background} />
           </ListItemAvatar>

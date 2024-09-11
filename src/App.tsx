@@ -90,6 +90,7 @@ function App() {
                 <ListItemText primary="Inbox" />
               </ListItemButton>
               <GameGenreList
+                selectedGenre={selectedGenre}
                 onSelectGenre={(genre) => setSelectedGenre(genre)}
               />
             </List>
