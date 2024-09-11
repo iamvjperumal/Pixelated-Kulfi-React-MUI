@@ -10,7 +10,7 @@ const GameGrid = () => {
     <>
      {error && <Typography variant='h5'>{error}</Typography>}
      <Grid container spacing={2}>
-     {games.map(game =>     <Grid size={{ xs: 12, sm : 6, md: 3, lg: 4 }}>
+     {games.map(game =>     <Grid size={{ xs: 12, sm : 6, md: 4, lg: 3 }}>
      <GameCard game={game}/>
   </Grid> )}
 
