@@ -20,9 +20,10 @@ import DraftsIcon from "@mui/icons-material/Drafts";
 import SendIcon from "@mui/icons-material/Send";
 import GameGrid from "./components/GameGrid";
 import GameGenreList from "./components/GameGenreList";
+import { GameGenre } from "./hooks/useGameGenres";
 function App() {
   const [open, setOpen] = React.useState(true);
-
+  const [selectedGenre, setSelectedGenre] = useState<GameGenre | null>(null);
   const handleClick = () => {
     setOpen(!open);
   };
@@ -88,11 +89,13 @@ function App() {
                 </ListItemIcon>
                 <ListItemText primary="Inbox" />
               </ListItemButton>
-              <GameGenreList />
+              <GameGenreList
+                onSelectGenre={(genre) => setSelectedGenre(genre)}
+              />
             </List>
           </Grid>
           <Grid size={{ xs: 6, md: 10 }}>
-            <GameGrid />
+            <GameGrid selectedGenre={selectedGenre} />
           </Grid>
         </Grid>
       </Box>
