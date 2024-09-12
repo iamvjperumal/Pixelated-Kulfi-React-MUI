@@ -22,9 +22,9 @@ const GameGenreList = ({
         Game Genres
       </ListSubheader>
       {isLoading && <CircularProgress />}
-      {error && <Typography variant="h5">{error}</Typography>}
+      {error && <Typography variant="h5">{error.message}</Typography>}
 
-      {data.map((gamesGenre) => (
+      {data?.results.map((gamesGenre) => (
         <ListItemButton
           selected={gamesGenre.id === selectedGenre?.id}
           onClick={() => onSelectGenre(gamesGenre)}

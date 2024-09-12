@@ -17,8 +17,13 @@ import SendIcon from "@mui/icons-material/Send";
 import GameGrid from "./components/GameGrid";
 import GameGenreList from "./components/GameGenreList";
 import { GameGenre } from "./hooks/useGameGenres";
+
+export interface GameQuery {
+  genre: GameGenre | null;
+}
 function App() {
-  const [selectedGenre, setSelectedGenre] = useState<GameGenre | null>(null);
+  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
+  //const [selectedGenre, setSelectedGenre] = useState<GameGenre | null>(null);
   return (
     <>
       <AppBar position="fixed">
@@ -70,13 +75,13 @@ function App() {
               </ListItemButton>
 
               <GameGenreList
-                selectedGenre={selectedGenre}
-                onSelectGenre={(genre) => setSelectedGenre(genre)}
+                selectedGenre={gameQuery.genre}
+                onSelectGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
               />
             </List>
           </Grid>
           <Grid size={{ xs: 6, md: 10 }}>
-            <GameGrid selectedGenre={selectedGenre} />
+            <GameGrid gameQuery={gameQuery} />
           </Grid>
         </Grid>
       </Box>
